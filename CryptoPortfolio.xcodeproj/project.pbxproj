@@ -11,6 +11,7 @@
 		2CF5478229ED945900C739CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5478129ED945900C739CA /* ContentView.swift */; };
 		2CF5478429ED945B00C739CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5478329ED945B00C739CA /* Assets.xcassets */; };
 		2CF5478729ED945B00C739CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5478629ED945B00C739CA /* Preview Assets.xcassets */; };
+		2CF5479229ED9C4500C739CA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5479129ED9C4500C739CA /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,8 @@
 		2CF5478129ED945900C739CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2CF5478329ED945B00C739CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CF5478629ED945B00C739CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2CF5478D29ED971700C739CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CF5479129ED9C4500C739CA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +54,9 @@
 		2CF5477E29ED945900C739CA /* CryptoPortfolio */ = {
 			isa = PBXGroup;
 			children = (
-				2CF5477F29ED945900C739CA /* CryptoPortfolioApp.swift */,
-				2CF5478129ED945900C739CA /* ContentView.swift */,
-				2CF5478329ED945B00C739CA /* Assets.xcassets */,
-				2CF5478529ED945B00C739CA /* Preview Content */,
+				2CF5478E29ED971F00C739CA /* Source */,
+				2CF5478F29ED973800C739CA /* Views */,
+				2CF5479029ED9B9000C739CA /* Extensions */,
 			);
 			path = CryptoPortfolio;
 			sourceTree = "<group>";
@@ -65,6 +67,33 @@
 				2CF5478629ED945B00C739CA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2CF5478E29ED971F00C739CA /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2CF5478529ED945B00C739CA /* Preview Content */,
+				2CF5478D29ED971700C739CA /* Info.plist */,
+				2CF5478329ED945B00C739CA /* Assets.xcassets */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		2CF5478F29ED973800C739CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CF5477F29ED945900C739CA /* CryptoPortfolioApp.swift */,
+				2CF5478129ED945900C739CA /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2CF5479029ED9B9000C739CA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2CF5479129ED9C4500C739CA /* Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +168,7 @@
 			files = (
 				2CF5478229ED945900C739CA /* ContentView.swift in Sources */,
 				2CF5478029ED945900C739CA /* CryptoPortfolioApp.swift in Sources */,
+				2CF5479229ED9C4500C739CA /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,14 +296,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CryptoPortfolio/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CryptoPortfolio/Source/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = CryptoPortfolio/Source/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Crypto Portfolio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,14 +325,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CryptoPortfolio/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CryptoPortfolio/Source/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = CryptoPortfolio/Source/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Crypto Portfolio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
