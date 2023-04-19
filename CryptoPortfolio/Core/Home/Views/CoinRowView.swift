@@ -24,7 +24,6 @@ struct CoinRowView: View {
                 
                 rightColumn
                     .frame(width: geo.size.width / 3.5, alignment: .trailing)
-                    .padding(.trailing, 6)
             }
             .font(.subheadline)
         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @EnvironmentObject private var vm: HomeViewModel
     @State private var showPortfolio: Bool = false
     
     var body: some View {
@@ -19,7 +20,21 @@ struct HomeView: View {
             
             /// content layer
             VStack {
+                /// Top Bar
                 homeHeader
+                
+                /// Info Column
+                infoColumn
+                
+                /// Lists
+                if !showPortfolio {
+                    allCoinsList
+                    .transition(.move(edge: .leading))
+                }
+                if showPortfolio {
+                    portfolioCoinsList
+                        .transition(.move(edge: .trailing))
+                }
                 Spacer(minLength: 0)
             }
         }
@@ -32,10 +47,11 @@ struct HomeView_Previews: PreviewProvider {
         NavigationStack {
             HomeView()
         }
+        .environmentObject(dev.homeVM)
     }
 }
 
-//MARK: HomeView header
+//MARK: - Components
 extension HomeView {
     
     private var homeHeader: some View {
@@ -57,5 +73,40 @@ extension HomeView {
                 }
         }
         .padding(.horizontal)
+    }
+    
+    private var allCoinsList: some View {
+        List {
+            ForEach(vm.allCoins) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: false)
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+            }
+        }
+        .listStyle(.plain)
+    }
+    
+    private var portfolioCoinsList: some View {
+        List {
+            ForEach(vm.portfolioCoins) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: true)
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+            }
+        }
+        .listStyle(.plain)
+    }
+    
+    private var infoColumn: some View {
+        HStack {
+            Text("Coin")
+            Spacer(minLength: 160)
+            if showPortfolio {
+                Text("Holdings")
+            }
+            Spacer(minLength: 50)
+            Text("Price")
+        }
+        .padding(.horizontal)
+        .font(.caption)
+        .foregroundColor(Color.theme.secondaryText)
     }
 }
