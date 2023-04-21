@@ -23,6 +23,9 @@ struct HomeView: View {
                 /// Top Bar
                 homeHeader
                 
+                
+                SearchBarView(searchText: $vm.searchText)
+                
                 /// Info Column
                 infoColumn
                 
