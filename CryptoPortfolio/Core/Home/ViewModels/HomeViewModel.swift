@@ -22,11 +22,32 @@ class HomeViewModel: ObservableObject {
         addSubscriber()
     }
     
-    /// Subscribed to publisher in DataServer allCoins ($)
+    /// Subscribed to publisher and searchText
     func addSubscriber() {
-        dataService.$allCoins
-            .sink { [weak self] returnValue in
-                self?.allCoins = returnValue
+        /// Combine two publisher: first - searchText, second - allCoins
+        $searchText
+            .combineLatest(dataService.$allCoins)
+            .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main) /// Wait 0.3 second before run the code
+            .map(filterCoins)
+            .sink { [weak self] returnCoins in
+                self?.allCoins = returnCoins
             }.store(in: &cancellable)
+    }
+    
+    /// Publisher: first - searchText, second - allCoins
+    private func filterCoins(text: String, coins: [CoinModel]) -> [CoinModel] {
+        
+        /// If textField is empty -> return coins subscriber
+        guard !text.isEmpty else { return coins }
+        
+        /// Search with lowercased
+        let lowercasedText = text.lowercased()
+        
+        /// Filter
+        return coins.filter { coin -> Bool in
+            return coin.name.lowercased().contains(lowercasedText) ||
+            coin.symbol.lowercased().contains(lowercasedText) ||
+            coin.id.lowercased().contains(lowercasedText)
+        }
     }
 }
