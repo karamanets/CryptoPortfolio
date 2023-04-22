@@ -25,6 +25,8 @@
 		2CDE8E4029F2D89D0000F9F3 /* StatisticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDE8E3F29F2D89D0000F9F3 /* StatisticModel.swift */; };
 		2CDE8E4329F2E23A0000F9F3 /* StatisticBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDE8E4229F2E23A0000F9F3 /* StatisticBarView.swift */; };
 		2CDE8E4529F2EBB60000F9F3 /* StatisticBarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDE8E4429F2EBB60000F9F3 /* StatisticBarSection.swift */; };
+		2CDE8E6E29F4097E0000F9F3 /* MarketDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDE8E6D29F4097E0000F9F3 /* MarketDataModel.swift */; };
+		2CDE8E7029F412840000F9F3 /* MarketDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDE8E6F29F412840000F9F3 /* MarketDataService.swift */; };
 		2CF5478029ED945900C739CA /* CryptoPortfolioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5477F29ED945900C739CA /* CryptoPortfolioApp.swift */; };
 		2CF5478229ED945900C739CA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5478129ED945900C739CA /* HomeView.swift */; };
 		2CF5478429ED945B00C739CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5478329ED945B00C739CA /* Assets.xcassets */; };
@@ -51,6 +53,8 @@
 		2CDE8E3F29F2D89D0000F9F3 /* StatisticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticModel.swift; sourceTree = "<group>"; };
 		2CDE8E4229F2E23A0000F9F3 /* StatisticBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticBarView.swift; sourceTree = "<group>"; };
 		2CDE8E4429F2EBB60000F9F3 /* StatisticBarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticBarSection.swift; sourceTree = "<group>"; };
+		2CDE8E6D29F4097E0000F9F3 /* MarketDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataModel.swift; sourceTree = "<group>"; };
+		2CDE8E6F29F412840000F9F3 /* MarketDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataService.swift; sourceTree = "<group>"; };
 		2CF5477C29ED945900C739CA /* CryptoPortfolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoPortfolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF5477F29ED945900C739CA /* CryptoPortfolioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoPortfolioApp.swift; sourceTree = "<group>"; };
 		2CF5478129ED945900C739CA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			children = (
 				2C2A3C4629EED22700AFD094 /* CoinModel.swift */,
 				2CDE8E3F29F2D89D0000F9F3 /* StatisticModel.swift */,
+				2CDE8E6D29F4097E0000F9F3 /* MarketDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			children = (
 				2CD8D2FE29F0481B00996964 /* CoinDataService.swift */,
 				2CD5D22429F1766A0012324B /* CoinImageService.swift */,
+				2CDE8E6F29F412840000F9F3 /* MarketDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -309,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CDE8E4029F2D89D0000F9F3 /* StatisticModel.swift in Sources */,
+				2CDE8E7029F412840000F9F3 /* MarketDataService.swift in Sources */,
 				2CF5478229ED945900C739CA /* HomeView.swift in Sources */,
 				2CF5478029ED945900C739CA /* CryptoPortfolioApp.swift in Sources */,
 				2C2A3C4129EEC2AB00AFD094 /* CircleButtonView.swift in Sources */,
@@ -321,6 +328,7 @@
 				2C326BEB29F185CB004FD3B3 /* LocalFileManager.swift in Sources */,
 				2CD8D2F429F004F800996964 /* CoinRowView.swift in Sources */,
 				2CD8D2F829F014D700996964 /* Double.swift in Sources */,
+				2CDE8E6E29F4097E0000F9F3 /* MarketDataModel.swift in Sources */,
 				2CD8D30129F0611C00996964 /* NetworkingManager.swift in Sources */,
 				2CDE8E3A29F2C01F0000F9F3 /* DismissKeyboard.swift in Sources */,
 				2CDE8E3529F2AE120000F9F3 /* CoinImageViewModel.swift in Sources */,

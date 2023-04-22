@@ -24,7 +24,7 @@ struct HomeView: View {
                 homeHeader
                 
                 /// Statistic Bar
-                StatisticBarSection(showportfolio: $showPortfolio)
+                StatisticBarSection(showPortfolio: $showPortfolio)
                 
                 /// Search Bar
                 SearchBarView(searchText: $vm.searchText)

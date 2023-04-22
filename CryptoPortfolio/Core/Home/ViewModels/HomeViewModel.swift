@@ -10,34 +10,34 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     
-    let statistic: [StatisticModel] = [
-        StatisticModel(title: "Total", value: "$1.23Bn", percentageChange: 12.33),
-        StatisticModel(title: "Total", value: "$1.23Bn"),
-        StatisticModel(title: "Total", value: "$1.23Bn"),
-        StatisticModel(title: "Total", value: "$1.23Bn", percentageChange: -7.19)
-    ]
-    
+    @Published var statistic: [StatisticModel] = []
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
-    
     @Published var searchText: String = ""
     
-    private let dataService = CoinDataService()
+    private let coinDataService = CoinDataService()
+    private let marketDataService = MarketDataService()
     private var cancellable = Set<AnyCancellable>()
     
     init() {
-        addSubscriber()
+        addSubscribers()
     }
     
-    /// Subscribed to publisher and searchText
-    func addSubscriber() {
-        /// Combine two publisher: first - searchText, second - allCoins
+    func addSubscribers() {
+        /// First Subscribe combine two publisher: first - searchText, second - allCoins
         $searchText
-            .combineLatest(dataService.$allCoins)
+            .combineLatest(coinDataService.$allCoins)
             .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main) /// Wait 0.3 second before run the code
             .map(filterCoins)
             .sink { [weak self] returnCoins in
                 self?.allCoins = returnCoins
+            }.store(in: &cancellable)
+        
+        /// Second Subscribe to MarketDataService -> marketData
+        marketDataService.$marketData
+            .map(mapGlobalMarketData)
+            .sink { [weak self] returnStats in
+                self?.statistic = returnStats
             }.store(in: &cancellable)
     }
     
@@ -56,5 +56,23 @@ class HomeViewModel: ObservableObject {
             coin.symbol.lowercased().contains(lowercasedText) ||
             coin.id.lowercased().contains(lowercasedText)
         }
+    }
+    
+    /// Convert data: MarketDataModel into array of StatisticModel
+    private func mapGlobalMarketData(marketDataModel: MarketDataModel?) -> [StatisticModel] {
+        var tempStats: [StatisticModel] = []
+        
+        /// If marketDataModel is empty return empty array
+        guard let data = marketDataModel else { return tempStats }
+        
+        /// SetUp sections:
+        let marketCap = StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd)
+        let volume = StatisticModel(title: "24h Volume", value: data.volume)
+        let dominance = StatisticModel(title: "BTC Dominance", value: data.BTCDominance)
+        let portfolioValue = StatisticModel(title: "Portfolio Value", value: "$0.00", percentageChange: 0)
+        
+        /// Add to tempStats
+        tempStats.append(contentsOf: [marketCap, volume, dominance, portfolioValue])
+        return tempStats
     }
 }
