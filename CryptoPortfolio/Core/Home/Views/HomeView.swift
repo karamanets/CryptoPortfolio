@@ -23,7 +23,10 @@ struct HomeView: View {
                 /// Top Bar
                 homeHeader
                 
+                /// Statistic Bar
+                StatisticBarSection(showportfolio: $showPortfolio)
                 
+                /// Search Bar
                 SearchBarView(searchText: $vm.searchText)
                 
                 /// Info Column
