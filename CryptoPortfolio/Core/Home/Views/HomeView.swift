@@ -10,7 +10,8 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
-    @State private var showPortfolio: Bool = false
+    @State private var showPortfolio : Bool = false /// Animation
+    @State private var showSheet     : Bool = false /// Show sheet view
     
     var body: some View {
         
@@ -44,6 +45,10 @@ struct HomeView: View {
                 Spacer(minLength: 0)
             }
         }
+        .sheet(isPresented: $showSheet) {
+            PortfolioView()
+                .environmentObject(vm)
+        }
     }
 }
 
@@ -64,6 +69,13 @@ extension HomeView {
         HStack {
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")
                 .background(CircleButtonAnimate(animate: $showPortfolio))
+                .onTapGesture {
+                    if showPortfolio {
+                        /// If circle button is "plus" -> can show sheet
+                        showSheet.toggle()
+                    }
+                }
+            
             Spacer()
             Text(showPortfolio ? "Portfolio" : "Live Prices")
                 .font(.headline)
