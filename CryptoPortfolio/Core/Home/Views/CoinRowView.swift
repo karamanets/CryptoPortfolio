@@ -76,6 +76,5 @@ private extension CoinRowView {
                                    Color.theme.green :
                                     Color.theme.red))
         }
-        
     }
 }

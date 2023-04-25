@@ -10,6 +10,7 @@ import SwiftUI
 struct PortfolioView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
+    
     @State private var selectedCoin: CoinModel? = nil
     @State private var amount: String = ""
     @State private var checkMark: Bool = false
@@ -39,6 +40,11 @@ struct PortfolioView: View {
                 ToolbarItem(placement: .navigationBarLeading) { XMarkButton() }
                 ToolbarItem(placement: .navigationBarTrailing) { getCheckMark }
             }
+            .onChange(of: vm.searchText, perform: { newValue in
+                if newValue == "" {
+                    removeSelection()
+                }
+            })
             .onTapGesture {  hideKeyboard() }
             .alert("Try again", isPresented: $showAlert) {
                 Button(role: .destructive) {
@@ -62,19 +68,19 @@ struct PortfolioView_Previews: PreviewProvider {
     }
 }
 
-//MARK: Private Components
+//MARK: - Components
 extension PortfolioView {
     
     private var logoCoinList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack (spacing: 11) {
-                ForEach(vm.allCoins) { coin in
+                ForEach(vm.searchText.isEmpty ? vm.portfolioCoins : vm.allCoins) { coin in
                     CoinLogoView(coin: coin)
                         .frame(width: 80)
                         .padding(4)
                         .onTapGesture {
                             withAnimation(.spring()) {
-                                selectedCoin = coin
+                                updateSelectionAmount(coin: coin)
                             }
                         }
                         .background(
@@ -124,12 +130,13 @@ extension PortfolioView {
         VStack {
             Button {
                 guard
-                    let _ = selectedCoin, !amount.isEmpty else {
+                    let coin = selectedCoin,
+                    let amount = Double(amount) else {
                     showAlert.toggle()
                     return
                 }
                 /// Save in Portfolio
-                // Save func
+                vm.updatePortfolio(coin: coin, amount: amount)
                 
                 /// Dismiss keyboard
                 hideKeyboard()
@@ -168,7 +175,7 @@ extension PortfolioView {
     }
 }
 
-//MARK: Private Methods
+//MARK: - Private Methods
 extension PortfolioView {
     
     private func getCurrentValue() -> Double {
@@ -183,4 +190,17 @@ extension PortfolioView {
         selectedCoin = nil
         amount = ""
     }
+    
+    private func updateSelectionAmount(coin: CoinModel) {
+        selectedCoin = coin
+        /// This method get current amount from portfolio if exist
+        guard
+            let portfolioCoin = vm.portfolioCoins.first(where: { $0.id == coin.id }),
+            let currentAmount = portfolioCoin.currentHoldings else {
+            amount = ""
+            return
+        }
+        amount = "\(currentAmount)"
+    }
+    
 }
