@@ -9,22 +9,15 @@ import Foundation
 
 extension Double {
     
-    /// Convert Double into a Currency with 2-6 decimal places
+    /// Convert Double into a Currency with 2-2 decimal places
     /// ```
-    /// Convert 1234.56 to $1,234.56
-    /// Convert 12.3456 to $12.3456
-    /// Convert 0.123456 to $0.123456
+    /// Convert 1234.56 to "$1,234.56"
+    /// Convert 12.3456 to "$12.34"
+    /// Convert 0.123456 to "$0.12"
     ///```
-    private var currencyFormatter6: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.usesGroupingSeparator = true
-        formatter.numberStyle = .currency
-        //formatter.locale = .current
-        //formatter.currencyCode = "usd"
-        formatter.currencySymbol = "$"
-        formatter.minimumFractionDigits = 2 /// minimum ofter coma
-        formatter.maximumFractionDigits = 6 /// maximum after coma
-        return formatter
+    func asCurrencyWith2() -> String {
+        let number = NSNumber(value: self)
+        return currencyFormatter2.string(from: number) ?? "$0.00"
     }
     
     /// Convert Double into a Currency with 2-6 decimal places
@@ -37,6 +30,32 @@ extension Double {
         let number = NSNumber(value: self)
         return currencyFormatter6.string(from: number) ?? "$0.00"
     }
+    
+    private var currencyFormatter2: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        //formatter.locale = .current
+        //formatter.currencyCode = "usd"
+        formatter.currencySymbol = "$"
+        formatter.minimumFractionDigits = 2 /// minimum ofter coma
+        formatter.maximumFractionDigits = 2 /// maximum after coma
+        return formatter
+    }
+    
+    private var currencyFormatter6: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        //formatter.locale = .current
+        //formatter.currencyCode = "usd"
+        formatter.currencySymbol = "$"
+        formatter.minimumFractionDigits = 2 /// minimum ofter coma
+        formatter.maximumFractionDigits = 6 /// maximum after coma
+        return formatter
+    }
+    
+    /// ==
     
     /// Convert Double into a Currency with 2-6 decimal places
     /// ```

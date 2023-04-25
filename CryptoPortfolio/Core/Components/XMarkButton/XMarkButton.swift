@@ -13,6 +13,7 @@ struct XMarkButton: View {
     
     var body: some View {
         Button {
+            hideKeyboard()
             goBack()
         } label: {
             Image(systemName: "arrowshape.turn.up.backward.2")

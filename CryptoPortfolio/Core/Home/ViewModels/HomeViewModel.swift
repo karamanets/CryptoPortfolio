@@ -3,7 +3,7 @@
 //  CryptoPortfolio
 //
 //  Created by Alex Karamanets on 19.04.2023.
-//
+// .refreshable() add
 
 import Foundation
 import Combine
@@ -34,14 +34,7 @@ class HomeViewModel: ObservableObject {
                 self?.allCoins = returnCoins
             }.store(in: &cancellable)
         
-        /// Second Subscribe to MarketDataService -> marketData
-        marketDataService.$marketData
-            .map(mapGlobalMarketData)
-            .sink { [weak self] returnStats in
-                self?.statistic = returnStats
-            }.store(in: &cancellable)
-        
-        /// Third Subscriber Portfolio CoreData combine with allCoin (latest filtered coins in search bar)
+        /// SecondSubscriber Portfolio CoreData combine with allCoin (latest filtered coins in search bar)
         $allCoins
             .combineLatest(portfolioCoreDataService.$savedEntity)
             .map { (coinModels, portfolioEntity) -> [CoinModel] in
@@ -57,6 +50,13 @@ class HomeViewModel: ObservableObject {
                 self?.portfolioCoins = returnValue
             }.store(in: &cancellable)
         
+        /// Third Subscribe to MarketDataService -> marketData and portfolioCoins -> get current amount of portfolio
+        marketDataService.$marketData
+            .combineLatest($portfolioCoins)
+            .map(mapGlobalMarketData)
+            .sink { [weak self] returnStats in
+                self?.statistic = returnStats
+            }.store(in: &cancellable)
     }
     
     /// Update Coin Portfolio in CoreData
@@ -82,20 +82,43 @@ class HomeViewModel: ObservableObject {
     }
     
     /// Convert data: MarketDataModel into array of StatisticModel
-    private func mapGlobalMarketData(marketDataModel: MarketDataModel?) -> [StatisticModel] {
+    private func mapGlobalMarketData(marketDataModel: MarketDataModel?, coins: [CoinModel]) -> [StatisticModel] {
         var tempStats: [StatisticModel] = []
         
         /// If marketDataModel is empty return empty array
         guard let data = marketDataModel else { return tempStats }
         
-        /// SetUp sections:
+        /// SetUp  for first three sections:
         let marketCap = StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd)
         let volume = StatisticModel(title: "24h Volume", value: data.volume)
         let dominance = StatisticModel(title: "BTC Dominance", value: data.BTCDominance)
-        let portfolioValue = StatisticModel(title: "Portfolio Value", value: "$0.00", percentageChange: 0)
+        
+        /// SetUp for portfolio all -> value
+        let portfolioValue =
+            coins
+            .map({ $0.currentHoldingsValue })
+            .reduce(0, +)
+        
+        /// SetUp for portfolio all -> percentageChange 24h
+        let previousValue =
+            coins
+            .map { (coin) -> Double in
+                let currentValue = coin.currentHoldingsValue
+                let percentChange = (coin.priceChangePercentage24H ?? 0) / 100
+                let previousValue = currentValue / (1 + percentChange)
+                return previousValue
+            }
+            .reduce(0, +)
+        
+        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+        
+        /// SetUp Last section:
+        let portfolio = StatisticModel(title: "Portfolio Value",
+                                            value: portfolioValue.asCurrencyWith2(),
+                                            percentageChange: percentageChange)
         
         /// Add to tempStats
-        tempStats.append(contentsOf: [marketCap, volume, dominance, portfolioValue])
+        tempStats.append(contentsOf: [marketCap, volume, dominance, portfolio])
         return tempStats
     }
 }

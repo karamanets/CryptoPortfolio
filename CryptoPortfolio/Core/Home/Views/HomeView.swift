@@ -72,6 +72,7 @@ extension HomeView {
                 .onTapGesture {
                     if showPortfolio {
                         /// If circle button is "plus" -> can show sheet
+                        hideKeyboard()
                         showSheet.toggle()
                     }
                 }
