@@ -116,23 +116,55 @@ extension HomeView {
     
     private var infoColumn: some View {
         HStack {
-            Text("Coin")
+            HStack (spacing: 4) {
+                Text("Coin")
+                Image(systemName: "chevron.down")
+                    .opacity( (vm.sortOptions == .rank || vm.sortOptions == .rankReversed) ? 1.0 : 0.0 )
+                    .rotationEffect(Angle(degrees: vm.sortOptions == .rank ? 180 : 0))
+            }
+            .onTapGesture {
+                withAnimation(.linear(duration: 0.5)) {
+                    vm.sortOptions = vm.sortOptions == .rank ? .rankReversed :  .rank
+                }
+                HapticManager.notification(type: .success)
+            }
             Spacer(minLength: 160)
             if showPortfolio {
-                Text("Holdings")
+                HStack (spacing: 4) {
+                    Text("Holdings")
+                    Image(systemName: "chevron.down")
+                        .opacity( (vm.sortOptions == .holdings || vm.sortOptions == .holdingsReversed) ? 1.0 : 0.0 )
+                        .rotationEffect(Angle(degrees: vm.sortOptions == .holdings ? 180 : 0 ))
+                }
+                .onTapGesture {
+                    withAnimation(.linear(duration: 0.5)) {
+                        vm.sortOptions = vm.sortOptions == .holdings ? .holdingsReversed : .holdings
+                    }
+                    HapticManager.notification(type: .success)
+                }
             }
             Spacer(minLength: 50)
-            Text("Price")
-            
+            HStack (spacing: 4) {
+                Text("Price")
+                Image(systemName: "chevron.down")
+                    .opacity( (vm.sortOptions == .price || vm.sortOptions == .priceReversed) ? 1.0 : 0.0 )
+                    .rotationEffect(Angle(degrees: vm.sortOptions ==  .price ? 180 : 0 ))
+            }
+            .onTapGesture {
+                withAnimation(.linear(duration: 0.5)) {
+                    vm.sortOptions = vm.sortOptions == .price ? .priceReversed : .price
+                }
+                HapticManager.notification(type: .success)
+            }
             Button {
-                withAnimation(.easeInOut(duration: 2.0)) {
+                withAnimation(.linear(duration: 0.5)) {
                     vm.reloadData()
                 }
             } label: {
                 Image(systemName: "goforward")
                     .rotationEffect(Angle(degrees: vm.isLoading ? 360 : 0), anchor: .center)
             }
-            
+            .padding(.leading, 8)
         }
         .padding(.horizontal)
         .font(.caption)
