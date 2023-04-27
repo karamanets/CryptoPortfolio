@@ -13,6 +13,9 @@ struct HomeView: View {
     @State private var showPortfolio : Bool = false /// Animation
     @State private var showSheet     : Bool = false /// Show sheet view
     
+    @State private var selectedCoin: CoinModel? = nil
+    @State private var showDetailView: Bool = false
+    
     var body: some View {
         
         ZStack {
@@ -97,9 +100,14 @@ extension HomeView {
     private var allCoinsList: some View {
         List {
             ForEach(vm.allCoins) { coin in
-                CoinRowView(coin: coin, showHoldingColumn: false)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                NavigationLink {
+                    /// Inserted Lazy View
+                    LazyView<DetailView>(DetailView(coin: coin))
+                } label: {
+                    CoinRowView(coin: coin, showHoldingColumn: false)
+                }
             }
+            .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
     }
@@ -107,9 +115,14 @@ extension HomeView {
     private var portfolioCoinsList: some View {
         List {
             ForEach(vm.portfolioCoins) { coin in
-                CoinRowView(coin: coin, showHoldingColumn: true)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                NavigationLink {
+                    /// Inserted Lazy View
+                    LazyView<DetailView>(DetailView(coin: coin))
+                } label: {
+                    CoinRowView(coin: coin, showHoldingColumn: true)
+                }
             }
+            .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
     }
