@@ -9,15 +9,17 @@ import SwiftUI
 
 struct DetailView: View {
     
-    let coin: CoinModel
+    @StateObject private var vm: DetailViewModel
     
+    /// inject CoinModel
     init(coin: CoinModel) {
-        self.coin = coin
-        print("[🔥] Coin downloaded: \(coin.name)")
+        _vm = StateObject(wrappedValue: DetailViewModel(coin: coin))
+        //print("[🔥] Coin downloaded: \(coin.name)")
     }
+    
     var body: some View {
         VStack {
-            Text(coin.name)
+           
             XMarkButton()
             
         }
