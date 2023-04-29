@@ -50,7 +50,7 @@ final class DeveloperPreview {
                                     atlChangePercentage: 44731.1159,
                                     atlDate: "2013-07-06T00:00:00.000Z",
                                     lastUpdated: "2023-04-18T13:56:01.620Z",
-                                    sparklineIn7D: SparklineIn7D(price: [30023, 29877]),
+                                    sparklineIn7D: SparklineIn7D(price: [30023, 30000, 29990, 29987, 29800, 29770, 29766, 29500, 29456,29300,29200,28000,27650]),
                                     priceChangePercentage24HInCurrency: 3.43710112008458,
                                     currentHoldings: 1.77)
 }

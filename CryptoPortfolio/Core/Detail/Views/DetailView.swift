@@ -21,15 +21,16 @@ struct DetailView: View {
     var body: some View {
         VStack {
             detailHeader
-                ScrollView(showsIndicators: false) {
-                    graph
-
-                    Divider()
-                    overview
-
-                    details
-                }
-                .padding()
+            
+            chart
+            
+            ScrollView(showsIndicators: false) {
+                overview
+                
+                divider
+                details
+            }
+            .padding()
             .navigationBarBackButtonHidden()
         }
     }
@@ -53,15 +54,24 @@ extension DetailView {
                 .font(.title2 .bold())
                 .foregroundColor(Color.theme.accent)
             Spacer()
+            HStack {
+                Text(vm.coin.symbol.uppercased())
+                    .font(.title2 .bold())
+                    .foregroundColor(Color.theme.secondaryText)
+                
+                CoinImageView(coin: vm.coin)
+                    .frame(width: 25, height: 25)
+            }
+            .padding(10)
         }
     }
     
     /// Graph for coin
-    private var graph: some View {
+    private var chart: some View {
         VStack {
-            Text("Grafic")
-                .frame(height: 150)
+            ChartView(coin: vm.coin)
         }
+        .padding(.vertical, 5)
     }
     
     /// Overview for coin
@@ -93,6 +103,16 @@ extension DetailView {
                     StatisticBarView(statistic: stat)
                 }
             }
+        }
+    }
+    
+    /// Custom Divider
+    private var divider: some View {
+        VStack {
+            RoundedRectangle(cornerRadius: 30)
+                .foregroundColor(Color.theme.secondaryText)
+                .frame(maxWidth: .infinity)
+                .frame(height: 1)
         }
     }
 }
