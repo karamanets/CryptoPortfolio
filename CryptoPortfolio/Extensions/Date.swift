@@ -15,7 +15,6 @@ extension Date {
     }
     
     init(coinGecoString: String) {
-        /// incoming date - lastUpdated:  ---- "2023-04-18T13:56:01.620Z"
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         let date = formatter.date(from: coinGecoString) ?? Date()
@@ -24,7 +23,10 @@ extension Date {
     
     private var shortFormatter: DateFormatter {
         let formatter = DateFormatter()
+        /// Type of date
         formatter.dateStyle = .medium
+        /// Local in this case - "en" - English
+        formatter.locale = Locale(identifier: "en")
         return formatter
     }
 }

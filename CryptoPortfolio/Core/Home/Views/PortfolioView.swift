@@ -37,7 +37,7 @@ struct PortfolioView: View {
             }
             .navigationTitle("Edit Portfolio")
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) { XMarkButton() }
+                ToolbarItem(placement: .navigationBarLeading) { DismissButton() }
                 ToolbarItem(placement: .navigationBarTrailing) { getCheckMark }
             }
             .onChange(of: vm.searchText, perform: { newValue in

@@ -8,7 +8,6 @@
 import SwiftUI
 
 //MARK: LazyView allowed, don't download all views in the list instead -> download when clicked
-
 struct LazyView<Content: View>: View {
     let build: () -> Content
     init(_ build: @autoclosure @escaping () -> Content) {

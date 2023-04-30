@@ -50,7 +50,7 @@ extension DetailView {
     /// Header coin name and backButton
     private var detailHeader: some View {
         HStack  {
-            XMarkButton()
+            DismissButton()
             Text(vm.coin.name)
                 .font(.title2 .bold())
                 .foregroundColor(Color.theme.accent)

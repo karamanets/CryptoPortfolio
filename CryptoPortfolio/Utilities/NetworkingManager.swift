@@ -45,7 +45,7 @@ class NetworkingManager {
         case .finished:
             break
         case .failure(let error):
-            print("Error handleCompletion: \(error.localizedDescription)")
+            print("[🔥] Error handleCompletion: \(error.localizedDescription)")
         }
     }
     

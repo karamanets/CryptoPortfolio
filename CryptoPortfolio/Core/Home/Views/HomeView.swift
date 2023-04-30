@@ -11,13 +11,18 @@ struct HomeView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
     @State private var showPortfolio : Bool = false /// Animation
-    @State private var showSheet     : Bool = false /// Show sheet view
+    @State private var showSheet     : Bool = false /// Show sheet add coin view
+    @State private var showSettings  : Bool = false /// Show sheet Settings
     
     var body: some View {
         
         ZStack {
             /// background layer
             Color.theme.background
+                .sheet(isPresented: $showSheet) {
+                    PortfolioView()
+                        .environmentObject(vm)
+                }
             
             /// content layer
             VStack {
@@ -45,9 +50,8 @@ struct HomeView: View {
                 Spacer(minLength: 0)
             }
         }
-        .sheet(isPresented: $showSheet) {
-            PortfolioView()
-                .environmentObject(vm)
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
         }
     }
 }
@@ -74,6 +78,10 @@ extension HomeView {
                         /// If circle button is "plus" -> can show sheet
                         hideKeyboard()
                         showSheet.toggle()
+                    } else {
+                        /// If circle button is "info" -> can show sheet settings
+                        hideKeyboard()
+                        showSettings.toggle()
                     }
                 }
             
