@@ -20,6 +20,8 @@
 		2C98AD3929FD359C00FD92B1 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98AD3829FD359C00FD92B1 /* Date.swift */; };
 		2C98AD3B29FD520F00FD92B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98AD3A29FD520F00FD92B1 /* String.swift */; };
 		2CAB155029FE62D300D76784 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB154F29FE62D300D76784 /* SettingsView.swift */; };
+		2CAB155329FEA06700D76784 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CAB155229FEA06700D76784 /* LaunchScreen.storyboard */; };
+		2CAB155729FEA33B00D76784 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB155629FEA33B00D76784 /* LaunchView.swift */; };
 		2CC6BA5529FA8C08001B7E8C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC6BA5429FA8C08001B7E8C /* DetailView.swift */; };
 		2CC6BA5929FAB635001B7E8C /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC6BA5829FAB635001B7E8C /* LazyView.swift */; };
 		2CC6BA5B29FABD0F001B7E8C /* CoinDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC6BA5A29FABD0F001B7E8C /* CoinDetailsModel.swift */; };
@@ -64,6 +66,8 @@
 		2C98AD3829FD359C00FD92B1 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		2C98AD3A29FD520F00FD92B1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		2CAB154F29FE62D300D76784 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2CAB155229FEA06700D76784 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2CAB155629FEA33B00D76784 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		2CC6BA5429FA8C08001B7E8C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		2CC6BA5829FAB635001B7E8C /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		2CC6BA5A29FABD0F001B7E8C /* CoinDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsModel.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 		2C2A3C3C29EEBF8E00AFD094 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2CAB155129FEA04100D76784 /* Launch */,
 				2C2A3C3F29EEC26900AFD094 /* Components */,
 				2C2A3C3D29EEBFA200AFD094 /* Home */,
 				2CC6BA5129FA8B2C001B7E8C /* Detail */,
@@ -190,6 +195,15 @@
 				2CAB154F29FE62D300D76784 /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		2CAB155129FEA04100D76784 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				2CAB155229FEA06700D76784 /* LaunchScreen.storyboard */,
+				2CAB155629FEA33B00D76784 /* LaunchView.swift */,
+			);
+			path = Launch;
 			sourceTree = "<group>";
 		};
 		2CC6BA5129FA8B2C001B7E8C /* Detail */ = {
@@ -398,6 +412,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CAB155329FEA06700D76784 /* LaunchScreen.storyboard in Resources */,
 				2CF5478729ED945B00C739CA /* Preview Assets.xcassets in Resources */,
 				2CF5478429ED945B00C739CA /* Assets.xcassets in Resources */,
 			);
@@ -411,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C98AD3B29FD520F00FD92B1 /* String.swift in Sources */,
+				2CAB155729FEA33B00D76784 /* LaunchView.swift in Sources */,
 				2CDE8E4029F2D89D0000F9F3 /* StatisticModel.swift in Sources */,
 				2CDE8E7029F412840000F9F3 /* MarketDataService.swift in Sources */,
 				2C3EA4A929F6B7E6004A0E70 /* CoinLogoView.swift in Sources */,
@@ -584,6 +600,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -613,6 +630,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
