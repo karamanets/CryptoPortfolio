@@ -18,11 +18,23 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                developer
-                coinGecko
-                source
+            ZStack {
+                
+                /// Background
+                Color.theme.background
+                    .ignoresSafeArea()
+                
+                /// Content
+                List {
+                    developer
+                        //.listRowBackground(Color.theme.background)
+                    coinGecko
+                        //.listRowBackground(Color.theme.background)
+                    source
+                        //.listRowBackground(Color.theme.background)
+                }
             }
+            .scrollContentBackground(.hidden)
             .navigationTitle("Settings")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

@@ -14,9 +14,14 @@ struct CryptoPortfolioApp: App {
     @State private var showLaunchView: Bool = true
     
     init() {
+        /// Color for navigation title
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
+        navBarAppearance.tintColor = UIColor(Color.theme.accent)
+        /// Color for tableView background
+        let tableView = UITableView.appearance()
+        tableView.backgroundColor = UIColor.clear
     }
     
     var body: some Scene {

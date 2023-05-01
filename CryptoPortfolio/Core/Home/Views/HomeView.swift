@@ -18,7 +18,7 @@ struct HomeView: View {
         
         ZStack {
             /// background layer
-            Color.theme.background
+            Color.theme.background.ignoresSafeArea()
                 .sheet(isPresented: $showSheet) {
                     PortfolioView()
                         .environmentObject(vm)
@@ -120,6 +120,7 @@ extension HomeView {
                 }
             }
             .listRowSeparator(.hidden)
+            .listRowBackground(Color.theme.background)
         }
         .listStyle(.plain)
     }
@@ -135,6 +136,7 @@ extension HomeView {
                 }
             }
             .listRowSeparator(.hidden)
+            .listRowBackground(Color.theme.background)
         }
         .listStyle(.plain)
     }

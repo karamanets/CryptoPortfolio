@@ -8,6 +8,12 @@
 import Foundation
 import SwiftUI
 
+extension Color {
+    
+    /// Color setUp for app
+    static let theme = ColorTheme()
+}
+
 struct ColorTheme {
     
     let accent = Color("AccentColor")
@@ -18,8 +24,12 @@ struct ColorTheme {
     let LaunchBackground = Color("LaunchBackground")
 }
 
-extension Color {
+struct ColorTheme2 {
     
-    /// Color setUp for app
-    static let theme = ColorTheme()
+    let accent = Color.white
+    let background = Color.black
+    let green = Color.green
+    let red = Color.red
+    let secondaryText = Color.secondary
+    let LaunchBackground = Color.black
 }
