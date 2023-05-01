@@ -44,8 +44,15 @@ struct HomeView: View {
                     .transition(.move(edge: .leading))
                 }
                 if showPortfolio {
-                    portfolioCoinsList
-                        .transition(.move(edge: .trailing))
+                    ZStack {
+                        /// If Portfolio is empty -> show Text
+                        if vm.portfolioCoins.isEmpty && vm.searchText.isEmpty {
+                            emptyPortfolioCoinsList
+                        } else {
+                            portfolioCoinsList
+                        }
+                    }
+                    .transition(.move(edge: .trailing))
                 }
                 Spacer(minLength: 0)
             }
@@ -130,6 +137,27 @@ extension HomeView {
             .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
+    }
+    
+    private var emptyPortfolioCoinsList: some View {
+        
+        VStack (alignment: .center) {
+            Image(systemName: "arrowshape.turn.up.backward.2.fill")
+                .resizable()
+                .frame(width: 70, height: 50)
+                .rotationEffect(Angle(degrees: 58))
+                .foregroundColor(Color.theme.red)
+                .shadow(color: Color.theme.red.opacity(0.7), radius: 5, y: 5)
+                .padding(.top, 50)
+            
+            Text("The portfolio is empty. Press plus to add some Coins")
+                .font(.system(size: 23 , weight: .medium, design: .monospaced))
+                .foregroundColor(Color.theme.accent)
+                .multilineTextAlignment(.center)
+                .shadow(color: Color.theme.red.opacity(0.7), radius: 5, y: 5)
+                .padding(.top, 20)
+                .padding(.horizontal)
+        }
     }
     
     private var infoColumn: some View {

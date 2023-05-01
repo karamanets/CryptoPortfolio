@@ -27,7 +27,8 @@ class NetworkingManager {
         return URLSession.shared.dataTaskPublisher(for: url)
             .subscribe(on: DispatchQueue.global(qos: .default))
             .tryMap({ try handleUrlResponse(output: $0, url: url )})
-            .receive(on: DispatchQueue.main)
+          //.receive(on: DispatchQueue.main) -> The best thin -> receive after decoding Data
+            .retry(3)
             .eraseToAnyPublisher()
     }
     
