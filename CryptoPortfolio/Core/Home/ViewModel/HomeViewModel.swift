@@ -17,7 +17,10 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var sortOptions: SortOptions = .holdings
     
-    private let coinDataService = CoinDataService()
+    //private let coinDataService = CoinDataService()
+    
+    private var coinDataService: CoinDataServiceProtocol
+    
     private let marketDataService = MarketDataService()
     private let portfolioCoreDataService = PortfolioCoreDataService()
     private var cancellable = Set<AnyCancellable>()
@@ -26,14 +29,15 @@ class HomeViewModel: ObservableObject {
         case rank, rankReversed, holdings, holdingsReversed, price, priceReversed
     }
     
-    init() {
+    init(coinDataService: CoinDataServiceProtocol) {
+        self.coinDataService = coinDataService
         addSubscribers()
     }
     
     func addSubscribers() {
         /// First Subscribe combine  publisher: first - searchText, second - allCoins, third - sort
         $searchText
-            .combineLatest(coinDataService.$allCoins, $sortOptions)
+            .combineLatest(coinDataService.publisher, $sortOptions) /// Subscribe protocol 
             .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main) /// Wait 0.3 second before run the code
             .map(filterAndSort)
             .sink { [weak self] returnCoins in

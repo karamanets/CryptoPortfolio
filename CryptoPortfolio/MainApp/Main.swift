@@ -1,19 +1,20 @@
 //
-//  CryptoPortfolioApp.swift
+//  Main.swift
 //  CryptoPortfolio
 //
-//  Created by Alex Karamanets on 17.04.2023.
+//  Created by Alex Karamanets on 02/05/2023.
 //
 
 import SwiftUI
 
-@main
-struct CryptoPortfolioApp: App {
+struct Main: View {
     
-    @StateObject private var vm = HomeViewModel()
+    @StateObject private var vm: HomeViewModel
     @State private var showLaunchView: Bool = true
     
-    init() {
+    init(vm: CoinDataServiceProtocol) {
+        _vm = StateObject(wrappedValue: HomeViewModel(coinDataService: vm))
+        
         /// Color for navigation title
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
@@ -24,8 +25,7 @@ struct CryptoPortfolioApp: App {
         tableView.backgroundColor = UIColor.clear
     }
     
-    var body: some Scene {
-        WindowGroup {
+    var body: some View {
             ZStack {
                 NavigationStack {
                     HomeView()
@@ -40,6 +40,5 @@ struct CryptoPortfolioApp: App {
                 }
                 .zIndex(2.0) /// It mins it'll be the second ZStack for transition
             }
-        }
     }
 }

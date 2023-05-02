@@ -49,5 +49,4 @@ class NetworkingManager {
             print("[🔥] Error handleCompletion: \(error.localizedDescription)")
         }
     }
-    
 }
