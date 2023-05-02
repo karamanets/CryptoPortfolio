@@ -19,6 +19,8 @@
 		2C66FC3429F7F25600EBDA8E /* PortfolioCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66FC3329F7F25600EBDA8E /* PortfolioCoreDataService.swift */; };
 		2C87D88B2A0145FC003D1EEE /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C87D88A2A0145FC003D1EEE /* Main.swift */; };
 		2C87D88E2A01485D003D1EEE /* CoinDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C87D88D2A01485D003D1EEE /* CoinDataServiceProtocol.swift */; };
+		2C87D8912A014F80003D1EEE /* MockCoinDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C87D8902A014F80003D1EEE /* MockCoinDataService.swift */; };
+		2C87D8942A015C66003D1EEE /* CoinDetailDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C87D8932A015C66003D1EEE /* CoinDetailDataServiceProtocol.swift */; };
 		2C98AD3929FD359C00FD92B1 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98AD3829FD359C00FD92B1 /* Date.swift */; };
 		2C98AD3B29FD520F00FD92B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98AD3A29FD520F00FD92B1 /* String.swift */; };
 		2CAB155029FE62D300D76784 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB154F29FE62D300D76784 /* SettingsView.swift */; };
@@ -67,6 +69,8 @@
 		2C66FC3329F7F25600EBDA8E /* PortfolioCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCoreDataService.swift; sourceTree = "<group>"; };
 		2C87D88A2A0145FC003D1EEE /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		2C87D88D2A01485D003D1EEE /* CoinDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataServiceProtocol.swift; sourceTree = "<group>"; };
+		2C87D8902A014F80003D1EEE /* MockCoinDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoinDataService.swift; sourceTree = "<group>"; };
+		2C87D8932A015C66003D1EEE /* CoinDetailDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailDataServiceProtocol.swift; sourceTree = "<group>"; };
 		2C98AD3829FD359C00FD92B1 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		2C98AD3A29FD520F00FD92B1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		2CAB154F29FE62D300D76784 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				2C87D88D2A01485D003D1EEE /* CoinDataServiceProtocol.swift */,
+				2C87D8932A015C66003D1EEE /* CoinDetailDataServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -208,6 +213,14 @@
 				2C87D88A2A0145FC003D1EEE /* Main.swift */,
 			);
 			path = MainApp;
+			sourceTree = "<group>";
+		};
+		2C87D8922A01574E003D1EEE /* MockServices */ = {
+			isa = PBXGroup;
+			children = (
+				2C87D8902A014F80003D1EEE /* MockCoinDataService.swift */,
+			);
+			path = MockServices;
 			sourceTree = "<group>";
 		};
 		2CAB154E29FE61A200D76784 /* Settings */ = {
@@ -328,6 +341,7 @@
 				2CF5479029ED9B9000C739CA /* Extensions */,
 				2C87D88C2A014831003D1EEE /* Protocols */,
 				2CD8D2FD29F047BB00996964 /* Services */,
+				2C87D8922A01574E003D1EEE /* MockServices */,
 				2C2A3C4529EED20F00AFD094 /* Models */,
 				2C2A3C3C29EEBF8E00AFD094 /* Core */,
 			);
@@ -466,10 +480,12 @@
 				2C2A3C4429EECAC000AFD094 /* CircleButtonAnimate.swift in Sources */,
 				2C2A3C4729EED22700AFD094 /* CoinModel.swift in Sources */,
 				2CC6BA5B29FABD0F001B7E8C /* CoinDetailsModel.swift in Sources */,
+				2C87D8942A015C66003D1EEE /* CoinDetailDataServiceProtocol.swift in Sources */,
 				2C3EA4A729F6AFB2004A0E70 /* DismissButton.swift in Sources */,
 				2C66FC3429F7F25600EBDA8E /* PortfolioCoreDataService.swift in Sources */,
 				2CDE8E4529F2EBB60000F9F3 /* StatisticBarSection.swift in Sources */,
 				2C87D88E2A01485D003D1EEE /* CoinDataServiceProtocol.swift in Sources */,
+				2C87D8912A014F80003D1EEE /* MockCoinDataService.swift in Sources */,
 				2CC6BA5D29FAC35F001B7E8C /* DetailViewModel.swift in Sources */,
 				2C66FC3229F7F10B00EBDA8E /* PortfolioData.xcdatamodeld in Sources */,
 				2CC6BA5529FA8C08001B7E8C /* DetailView.swift in Sources */,

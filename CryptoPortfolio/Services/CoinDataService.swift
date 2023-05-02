@@ -36,31 +36,3 @@ class CoinDataService: CoinDataServiceProtocol {
             })
     }
 }
-
-class MockCoinDataService: CoinDataServiceProtocol {
-
-    @Published var allCoins: [CoinModel] = []
-    
-    var publisher: Published<[CoinModel]>.Publisher { $allCoins }
-    
-    /// Single subscriber
-    var coinSubscription: AnyCancellable?
-    
-    init() {
-        getCoins()
-    }
-    
-    func getCoins() {
-        /// URL CoinGecko
-        guard let url = URL(string: "") else {
-            return
-        }
-        coinSubscription = NetworkingManager.download(url: url)
-            .decode(type: [CoinModel].self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion:(NetworkingManager.handleCompletion(_:)), receiveValue: { [weak self] returnValue in
-                self?.allCoins = returnValue
-                self?.coinSubscription?.cancel()
-            })
-    }
-}

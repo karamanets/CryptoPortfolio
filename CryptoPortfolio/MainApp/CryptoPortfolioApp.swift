@@ -13,9 +13,14 @@ struct CryptoPortfolioApp: App {
     var body: some Scene {
         WindowGroup {
             
-            Main(vm: CoinDataService())
+            /// Service
+            let coinDataService = CoinDataService()
             
-            //Main(vm: MockCoinDataService())
+            /// MockService
+            //let coinDataService = MockCoinDataService()
+            
+            
+            Main(vm: coinDataService )
     
         }
     }

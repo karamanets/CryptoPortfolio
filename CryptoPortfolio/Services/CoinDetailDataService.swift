@@ -8,9 +8,11 @@
 import Foundation
 import Combine
 
-class CoinDetailDataService {
+class CoinDetailDataService: CoinDetailDataServiceProtocol {
     
     @Published var coinDetails: CoinDetailsModel? = nil
+    
+    var publisher: Published<CoinDetailsModel?>.Publisher { $coinDetails }
     
     /// Single subscriber
     var coinDetailSubscription: AnyCancellable?
