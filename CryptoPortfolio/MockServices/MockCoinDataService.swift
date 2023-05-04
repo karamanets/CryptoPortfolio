@@ -62,15 +62,3 @@ class MockCoinDataService: CoinDataServiceProtocol {
         }
     }
 }
-
-/// URL CoinGecko
-//guard let url = URL(string: "") else {
-//    return
-//}
-//coinSubscription = NetworkingManager.download(url: url)
-//    .decode(type: [CoinModel].self, decoder: JSONDecoder())
-//    .receive(on: DispatchQueue.main)
-//    .sink(receiveCompletion:(NetworkingManager.handleCompletion(_:)), receiveValue: { [weak self] returnValue in
-//        self?.allCoins = returnValue
-//        self?.coinSubscription?.cancel()
-//    })

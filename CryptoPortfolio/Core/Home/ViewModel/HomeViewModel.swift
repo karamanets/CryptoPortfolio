@@ -20,8 +20,6 @@ class HomeViewModel: ObservableObject {
     private var coinDataService: CoinDataServiceProtocol
     
     private let marketDataService = MarketDataService()
-    
-    
     private let portfolioCoreDataService = PortfolioCoreDataService()
     private var cancellable = Set<AnyCancellable>()
     
