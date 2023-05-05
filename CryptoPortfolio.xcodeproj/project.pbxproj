@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C20C7892A03DB230019F5A5 /* DetailViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20C7882A03DB230019F5A5 /* DetailViewModel_Tests.swift */; };
 		2C20C78B2A03DF640019F5A5 /* TestsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20C78A2A03DF640019F5A5 /* TestsData.swift */; };
 		2C20C78D2A03F8840019F5A5 /* HomeViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20C78C2A03F8840019F5A5 /* HomeViewModel_Tests.swift */; };
 		2C2A3C4129EEC2AB00AFD094 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A3C4029EEC2AB00AFD094 /* CircleButtonView.swift */; };
@@ -71,7 +70,6 @@
 
 /* Begin PBXFileReference section */
 		2C20C77F2A03DA2E0019F5A5 /* CryptoPortfolio_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoPortfolio_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C20C7882A03DB230019F5A5 /* DetailViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel_Tests.swift; sourceTree = "<group>"; };
 		2C20C78A2A03DF640019F5A5 /* TestsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsData.swift; sourceTree = "<group>"; };
 		2C20C78C2A03F8840019F5A5 /* HomeViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel_Tests.swift; sourceTree = "<group>"; };
 		2C2A3C4029EEC2AB00AFD094 /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
@@ -146,9 +144,8 @@
 		2C20C7802A03DA2E0019F5A5 /* CryptoPortfolio_Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2C20C78A2A03DF640019F5A5 /* TestsData.swift */,
 				2C20C78C2A03F8840019F5A5 /* HomeViewModel_Tests.swift */,
-				2C20C7882A03DB230019F5A5 /* DetailViewModel_Tests.swift */,
+				2C20C78A2A03DF640019F5A5 /* TestsData.swift */,
 			);
 			path = CryptoPortfolio_Tests;
 			sourceTree = "<group>";
@@ -527,7 +524,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C20C7892A03DB230019F5A5 /* DetailViewModel_Tests.swift in Sources */,
 				2C20C78B2A03DF640019F5A5 /* TestsData.swift in Sources */,
 				2C20C78D2A03F8840019F5A5 /* HomeViewModel_Tests.swift in Sources */,
 			);
