@@ -10,7 +10,7 @@ import Combine
 
 class NetworkingManager {
     
-    enum NetworkingError: LocalizedError {
+    enum NetworkingError: LocalizedError, Equatable {
         
         case badURLResponse(url: URL)
         case unowned
