@@ -13,9 +13,9 @@ import Combine
 
 //📌 2. Testing struct - Given, When, Then
 
-//🔥 Free API CoinGecko is limited 5 - 10 request for 5 min, if ran all tests final test will be fail -> wait 5 min and executed last test
+//🔥 Free API CoinGecko is limited 5 - 10 request for 5 min, if ran all tests final test might will be fail -> wait 5 min and executed last test
 
-final class HomeViewModel_Tests: XCTestCase {
+final class CryptoPortfolio_Unit_Tests: XCTestCase {
     
     var viewModel: HomeViewModel?
     var cancellable = Set<AnyCancellable>()
