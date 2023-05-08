@@ -253,7 +253,69 @@ final class CryptoPortfolio_UI_Tests: XCTestCase {
         
     }
     
-    
+    func test_EditPortfolio_SearchCoin_ShowAddAndDeleteCoinfromPortfolio() {
+        // Given
+        sleep(4)
+        let livePricesStaticText = app.staticTexts[id.mainHeaderLabel.rawValue]
+        
+        //When
+        livePricesStaticText.tap()
+        
+        let showPortfolioButton = app.images[id.rightCircleButton.rawValue]
+        showPortfolioButton.tap()
+        
+        let leftCircleButton = app.images[id.leftCircleButton.rawValue]
+        leftCircleButton.tap()
+        sleep(1)
+        
+        let elementsQuery = app.scrollViews.otherElements
+        let textField = elementsQuery.textFields[id.hameTextField.rawValue]
+        textField.tap()
+        
+        let rKey = app.keys["R"]
+        rKey.tap()
+        
+        let vKey = app.keys["v"]
+        vKey.tap()
+        
+        let nKey = app.keys["n"]
+        nKey.tap()
+        
+        sleep(1)
+        let scrollViewsQuery = elementsQuery.scrollViews
+        let rvnCoinSymbol = scrollViewsQuery.otherElements.staticTexts["RVN"]
+        rvnCoinSymbol.tap()
+        
+        XCTAssertTrue(rvnCoinSymbol.exists)
+        sleep(1)
+        
+        let amountTextField = elementsQuery.textFields[id.amountTextField.rawValue]
+        amountTextField.tap()
+        sleep(1)
+        
+        let amount = app.keyboards.keys["1"]
+        amount.tap()
+        
+        let saveButton = elementsQuery.buttons[id.portfolioSaveButton.rawValue]
+        saveButton.tap()
+        sleep(1)
+        
+        let savedCoin = app.scrollViews.otherElements.scrollViews.otherElements.staticTexts["RVN"]
+        savedCoin.tap()
+        XCTAssertTrue(savedCoin.exists)
+        
+        amountTextField.tap()
+        
+        let clearAmount = elementsQuery.staticTexts["Clear amount"]
+        clearAmount.tap()
+        
+        sleep(1)
+        saveButton.tap()
+        
+        //Then
+        let checkMark = app.navigationBars["Edit Portfolio"].otherElements["checkmark.shield"]
+        XCTAssertTrue(checkMark.exists)
+    }
 }
 
 enum accessibilityIdentifier_ID: String {
@@ -271,4 +333,5 @@ enum accessibilityIdentifier_ID: String {
     case portfolioSaveButton  = "portfolioSave_Button_ID"
     case alertTryAgainButton  = "alert_ButtonTryAgain_ID"
     case chartLabel7days      = "chart7Days_Label_ID"
+    case amountTextField      = "amount_TextField_ID"
 }

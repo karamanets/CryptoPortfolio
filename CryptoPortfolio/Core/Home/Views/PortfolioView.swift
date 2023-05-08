@@ -16,7 +16,7 @@ struct PortfolioView: View {
     @State private var checkMark: Bool = false
     @State private var showAlert: Bool = false
     
-    private var message = "Enter the quantity of the selected coin 🥳"
+    private var message = "Enter the quantity of the selected coin, or 0 to delete 🥳"
     
     var body: some View {
         NavigationStack {
@@ -106,9 +106,13 @@ extension PortfolioView {
             }
             Divider()
             HStack {
-                Text("Quantity of coin")
+                Text(amount == "" ? "Quantity of coin" : "Clear amount")
+                    .onTapGesture {
+                        amount = "0"
+                    }
                 Spacer()
                 TextField("Ex: 1.73", text: $amount)
+                    .accessibilityIdentifier("amount_TextField_ID")
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.numbersAndPunctuation)
                     .autocorrectionDisabled(true)
