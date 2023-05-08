@@ -11,9 +11,13 @@ import XCTest
 
 //📌 2. Testing struct - Given, When, Then
 
+//🔥 Free API CoinGecko is limited 5 - 10 request for 5 min, if ran all tests test might will be fail -> wait 5 min and executed failed tests
+
 final class CryptoPortfolio_UI_Tests: XCTestCase {
     
     let app = XCUIApplication()
+    
+    let id = accessibilityIdentifier_ID.self
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -24,11 +28,11 @@ final class CryptoPortfolio_UI_Tests: XCTestCase {
 
     func test_HomeView_StartList_ShowPortfolio() {
         // Given
-        let livePricesStaticText = app.staticTexts["Live Prices"]
+        let livePricesStaticText = app.staticTexts[id.mainHeaderLabel.rawValue]
         
         // When
         sleep(4)
-        let showPortfolioButton = app.images["Forward"]
+        let showPortfolioButton = app.images[id.rightCircleButton.rawValue]
         showPortfolioButton.tap()
         showPortfolioButton.tap()
         showPortfolioButton.tap()
@@ -40,23 +44,23 @@ final class CryptoPortfolio_UI_Tests: XCTestCase {
     
     func test_HomeView_StartList_ShowSettings() {
         // Given
-        let livePricesStaticText = app.staticTexts["Live Prices"]
+        let livePricesStaticText = app.staticTexts[id.mainHeaderLabel.rawValue]
         
         // When
         sleep(4)
-        let showPortfolioButton = app.images["Forward"]
+        let showPortfolioButton = app.images[id.rightCircleButton.rawValue]
         showPortfolioButton.tap()
         showPortfolioButton.tap()
         showPortfolioButton.tap()
         showPortfolioButton.tap()
         
-        let plusButton = app.images["Info"]
-        plusButton.tap()
+        let leftCircleButton = app.images[id.leftCircleButton.rawValue]
+        leftCircleButton.tap()
         
         let settingLogo = app.navigationBars["Settings"].staticTexts["Settings"]
-        settingLogo.tap()
+        XCTAssertTrue(settingLogo.exists)
         
-        let dismissButton = app.navigationBars["Settings"].buttons["arrowshape.turn.up.backward.2"]
+        let dismissButton = app.navigationBars["Settings"].buttons[id.dismissButton.rawValue]
         dismissButton.tap()
         
         // Then
@@ -65,20 +69,20 @@ final class CryptoPortfolio_UI_Tests: XCTestCase {
     
     func test_HomeView_StartList_ShouldShowAddPortfolioAndGoBack() {
         // Given
-        let livePricesStaticText = app.staticTexts["Live Prices"]
+        let livePricesStaticText = app.staticTexts[id.mainHeaderLabel.rawValue]
         
         //When
         sleep(4)
-        let showPortfolioButton = app.images["Forward"]
-        showPortfolioButton.tap()
+        let rightCircleButton = app.images[id.rightCircleButton.rawValue]
+        rightCircleButton.tap()
         
-        let plusButton = app.images["Add"]
-        plusButton.tap()
+        let leftCircleButton = app.images[id.leftCircleButton.rawValue]
+        leftCircleButton.tap()
         
-        let dismissButton = app.navigationBars["Edit Portfolio"].buttons["arrowshape.turn.up.backward.2"]
+        let dismissButton = app.navigationBars["Edit Portfolio"].buttons[id.dismissButton.rawValue]
         dismissButton.tap()
         
-        showPortfolioButton.tap()
+        rightCircleButton.tap()
     
         // Then
         XCTAssertTrue(livePricesStaticText.exists)
@@ -86,15 +90,16 @@ final class CryptoPortfolio_UI_Tests: XCTestCase {
     
     func test_HomeView_StartList_ShouldShowFirstRowWithInfo_AndGaBack() {
         // Given
-        let livePricesStaticText = app.staticTexts["Live Prices"]
+        let livePricesStaticText = app.staticTexts[id.mainHeaderLabel.rawValue]
         
         //When
         sleep(4)
-        let showPortfolioButton = app.images["Forward"]
+        let showPortfolioButton = app.images[id.rightCircleButton.rawValue]
         showPortfolioButton.tap()
         showPortfolioButton.tap()
         
         livePricesStaticText.tap()
+        XCTAssertTrue(livePricesStaticText.exists)
         
         let rowFirst = app.collectionViews.cells.firstMatch
         rowFirst.tap()
@@ -113,10 +118,10 @@ final class CryptoPortfolio_UI_Tests: XCTestCase {
         info.swipeUp()
         info.swipeUp()
         
-        let hideInfo = elementsQuery.buttons["Hide description"]
+        let hideInfo = elementsQuery.buttons["Description_Button_ID"]
         hideInfo.tap()
         
-        let dismissButton = app.buttons["arrowshape.turn.up.backward.2"]
+        let dismissButton = app.buttons[id.dismissButton.rawValue]
         dismissButton.tap()
     
         // Then
@@ -125,8 +130,8 @@ final class CryptoPortfolio_UI_Tests: XCTestCase {
     
     func test_HomeView_StartList_ShouldSearch_RVN_Coin() {
         //Given
-        let textField = app.textFields["Search by name or symbol ..."]
         sleep(4)
+        let textField = app.textFields["home_TextField_ID"]
         textField.tap()
         
         //When
@@ -148,6 +153,122 @@ final class CryptoPortfolio_UI_Tests: XCTestCase {
         XCTAssertTrue(label.exists)
     }
     
-    //func test_HomeView() {}
+    func test_HomeView_FilterBar_shouldFilterLastCoinInList() {
+        // Given
+        sleep(4)
+        let livePricesStaticText = app.staticTexts[id.mainHeaderLabel.rawValue]
+        
+        //When
+        livePricesStaticText.tap()
+        
+        let collectionViewsQuery = app.collectionViews.cells.firstMatch
+        collectionViewsQuery.tap()
+        
+        let dismissButton = app.buttons[id.dismissButton.rawValue]
+        dismissButton.tap()
+        
+        let searchButtonNumber = app.staticTexts[id.searchButtonNumber.rawValue]
+        searchButtonNumber.tap()
+        sleep(1)
+        searchButtonNumber.tap()
+        sleep(1)
+        collectionViewsQuery.tap()
+        sleep(1)
+        let lastCoinInList = app.scrollViews.otherElements.staticTexts["250"]
+        sleep(1)
+        lastCoinInList.tap()
+        
+        //Then
+        XCTAssertTrue(lastCoinInList.exists)
+    }
+    
+    func test_HomeView_FilterBar_FilterPrise_ShouldReturnTrue() {
+        // Given
+        sleep(4)
+        let livePricesStaticText = app.staticTexts[id.mainHeaderLabel.rawValue]
+        
+        //When
+        livePricesStaticText.tap()
+        
+        let filterPriseButton = app.staticTexts[id.searchButtonPrice.rawValue]
+        filterPriseButton.tap()
+        sleep(1)
+        filterPriseButton.tap()
+        sleep(1)
+        
+        let collectionViewsQuery = app.collectionViews.cells.firstMatch
+        collectionViewsQuery.tap()
+        
+        sleep(1)
+        let textChart = app.staticTexts[id.chartLabel7days.rawValue]
+        textChart.tap()
+         
+        //Then
+        XCTAssertTrue(textChart.exists)
+    }
+    
+    func test_EditPortfolio_SearchCoin_ShouldShowAlertTryAgain() {
+        // Given
+        sleep(4)
+        let livePricesStaticText = app.staticTexts[id.mainHeaderLabel.rawValue]
+        
+        //When
+        livePricesStaticText.tap()
+        
+        let showPortfolioButton = app.images[id.rightCircleButton.rawValue]
+        showPortfolioButton.tap()
+        
+        let leftCircleButton = app.images[id.leftCircleButton.rawValue]
+        leftCircleButton.tap()
+        sleep(1)
+        
+        let elementsQuery = app.scrollViews.otherElements
+        let textField = elementsQuery.textFields[id.hameTextField.rawValue]
+        textField.tap()
+        
+        let rKey = app.keys["R"]
+        rKey.tap()
+        
+        let vKey = app.keys["v"]
+        vKey.tap()
+        
+        let nKey = app.keys["n"]
+        nKey.tap()
+        
+        sleep(1)
+        let scrollViewsQuery = elementsQuery.scrollViews
+        let rvnCoinSymbol = scrollViewsQuery.otherElements.staticTexts["RVN"]
+        rvnCoinSymbol.tap()
+        
+        XCTAssertTrue(rvnCoinSymbol.exists)
+        
+        let saveButton = elementsQuery.buttons[id.portfolioSaveButton.rawValue]
+        saveButton.tap()
+        
+        let alert = app.alerts["Try again"]
+            .scrollViews.otherElements.buttons[id.alertTryAgainButton.rawValue]
+        
+        //Then
+        XCTAssertTrue(alert.exists)
+        
+    }
+    
+    
+}
 
+enum accessibilityIdentifier_ID: String {
+    
+    case dismissButton        = "dismiss_Button_ID"
+    case leftCircleButton     = "plus_info_Button_ID"
+    case rightCircleButton    = "showPortfolio_Button_ID"
+    case hameTextField        = "home_TextField_ID"
+    case searchButtonNumber   = "searchOfNumber_Button_ID"
+    case searchButtonPrice    = "searchOfPrice_Button_ID"
+    case searchButtonHoldings = "searchOfHoldings_Button_ID"
+    case refreshButton        = "refresh_Button_ID"
+    case mainHeaderLabel      = "mainHeader_Label_ID"
+    case descriptionButton    = "description_Button_ID"
+    case portfolioSaveButton  = "portfolioSave_Button_ID"
+    case alertTryAgainButton  = "alert_ButtonTryAgain_ID"
+    case chartLabel7days      = "chart7Days_Label_ID"
 }

@@ -161,9 +161,9 @@ extension DetailView {
                     }
                 } label: {
                     Text(showAllDescription ? "Hide description" : "Reed more")
+                        .accessibilityIdentifier("description_Button_ID")
                         .foregroundColor(Color.theme.red)
                 }
-
             }
         }
     }

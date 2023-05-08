@@ -17,6 +17,7 @@ struct DismissButton: View {
             goBack()
         } label: {
             Image(systemName: "arrowshape.turn.up.backward.2")
+                .accessibilityIdentifier("dismiss_Button_ID")
                 .font(.headline)
                 .foregroundColor(Color.theme.red)
         }

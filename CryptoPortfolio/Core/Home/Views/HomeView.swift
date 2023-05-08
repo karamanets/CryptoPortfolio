@@ -79,6 +79,7 @@ extension HomeView {
     private var homeHeader: some View {
         HStack {
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")
+                .accessibilityIdentifier("plus_info_Button_ID")
                 .background(CircleButtonAnimate(animate: $showPortfolio))
                 .onTapGesture {
                     if showPortfolio {
@@ -94,11 +95,13 @@ extension HomeView {
             
             Spacer()
             Text(showPortfolio ? "Portfolio" : "Live Prices")
+                .accessibilityIdentifier("mainHeader_Label_ID")
                 .font(.headline)
                 .fontWeight(.heavy)
                 .foregroundColor(Color.theme.accent)
             Spacer()
             CircleButtonView(iconName: "chevron.right")
+                .accessibilityIdentifier("showPortfolio_Button_ID")
                 .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
                 .onTapGesture {
                     withAnimation(.spring()) {
@@ -166,6 +169,7 @@ extension HomeView {
         HStack {
             HStack (spacing: 4) {
                 Text("Coin")
+                    .accessibilityIdentifier("searchOfNumber_Button_ID")
                 Image(systemName: "chevron.down")
                     .opacity( (vm.sortOptions == .rank || vm.sortOptions == .rankReversed) ? 1.0 : 0.0 )
                     .rotationEffect(Angle(degrees: vm.sortOptions == .rank ? 180 : 0))
@@ -180,6 +184,7 @@ extension HomeView {
             if showPortfolio {
                 HStack (spacing: 4) {
                     Text("Holdings")
+                        .accessibilityIdentifier("searchOfHoldings_Button_ID")
                     Image(systemName: "chevron.down")
                         .opacity( (vm.sortOptions == .holdings || vm.sortOptions == .holdingsReversed) ? 1.0 : 0.0 )
                         .rotationEffect(Angle(degrees: vm.sortOptions == .holdings ? 180 : 0 ))
@@ -194,6 +199,7 @@ extension HomeView {
             Spacer(minLength: 50)
             HStack (spacing: 4) {
                 Text("Price")
+                    .accessibilityIdentifier("searchOfPrice_Button_ID")
                 Image(systemName: "chevron.down")
                     .opacity( (vm.sortOptions == .price || vm.sortOptions == .priceReversed) ? 1.0 : 0.0 )
                     .rotationEffect(Angle(degrees: vm.sortOptions ==  .price ? 180 : 0 ))
@@ -210,6 +216,7 @@ extension HomeView {
                 }
             } label: {
                 Image(systemName: "goforward")
+                    .accessibilityIdentifier("refresh_Button_ID")
                     .rotationEffect(Angle(degrees: vm.isLoading ? 360 : 0), anchor: .center)
             }
             .padding(.leading, 8)

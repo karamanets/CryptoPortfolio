@@ -116,6 +116,7 @@ extension ChartView {
             Text(startingDate.asShortDateString())
             Spacer()
             Text("7 day chart")
+                .accessibilityIdentifier("chart7Days_Label_ID")
             Spacer()
             Text(endingDate.asShortDateString())
         }

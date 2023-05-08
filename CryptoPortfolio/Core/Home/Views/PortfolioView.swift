@@ -53,6 +53,7 @@ struct PortfolioView: View {
                     hideKeyboard()
                 } label: {
                     Text("Clear search")
+                        .accessibilityIdentifier("alert_ButtonTryAgain_ID")
                 }
             } message: {
                 Text(message)
@@ -156,6 +157,7 @@ extension PortfolioView {
                 removeSelection()
             } label: {
                 Text("Save Currency")
+                    .accessibilityIdentifier("portfolioSave_Button_ID")
                     .foregroundColor(Color.theme.accent)
                     .font(.title2 .bold())
             }.buttonMode()
