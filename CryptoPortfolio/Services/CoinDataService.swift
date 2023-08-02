@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class CoinDataService: CoinDataServiceProtocol {
+final class CoinDataService: CoinDataServiceProtocol {
     
     @Published var allCoins: [CoinModel] = []
     

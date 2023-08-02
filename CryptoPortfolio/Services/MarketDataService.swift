@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 import Combine
 
-class MarketDataService {
+final class MarketDataService {
     
     @Published var marketData: MarketDataModel? = nil
     

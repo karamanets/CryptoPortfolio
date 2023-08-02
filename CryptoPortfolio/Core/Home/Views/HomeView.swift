@@ -126,6 +126,9 @@ extension HomeView {
             .listRowBackground(Color.theme.background)
         }
         .listStyle(.plain)
+        .refreshable {
+            vm.reloadData()
+        }
     }
     
     private var portfolioCoinsList: some View {

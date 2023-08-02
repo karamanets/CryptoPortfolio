@@ -3,12 +3,11 @@
 //  CryptoPortfolio
 //
 //  Created by Alex Karamanets on 19.04.2023.
-// .refreshable() add
 
 import Foundation
 import Combine
 
-class HomeViewModel: ObservableObject {
+final class HomeViewModel: ObservableObject {
     
     @Published var statistic: [StatisticModel] = []
     @Published var allCoins: [CoinModel] = []

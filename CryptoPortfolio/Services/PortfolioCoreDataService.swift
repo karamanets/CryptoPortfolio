@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class PortfolioCoreDataService {
+final class PortfolioCoreDataService {
     
     @Published var savedEntity: [PortfolioEntity] = []
     
