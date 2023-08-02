@@ -22,10 +22,12 @@
 <img src="https://github.com/karamanets/karamanets/blob/main/icon/IconCombined.png" width="24" height="24">     Combine
 
 <img src="https://github.com/karamanets/karamanets/blob/main/icon/IconDatabase.png" width="24" height="24">     Core Data
+
+<img src="https://github.com/karamanets/karamanets/blob/main/icon/iconTests.png" width="24" height="24">        UI Unit Tests
  
 <img src="https://github.com/karamanets/karamanets/blob/main/icon/IconAPI.png" width="24" height="24">          API CoinGecko
-  
-  
+ 
+ 
 <!--- about header --->
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=23&pause=1000&color=9356A0&width=435&lines=About+the+project" alt="Typing SVG" /></a>  
   
@@ -50,13 +52,15 @@
 ![picture1](https://github.com/karamanets/karamanets/blob/main/icon/Lightning1.png)  Contains five screens
     
 ![picture1](https://github.com/karamanets/karamanets/blob/main/icon/Lightning1.png)  Using the MVVM pattern
+
+![picture1](https://github.com/karamanets/karamanets/blob/main/icon/Lightning1.png)  Includes UI and Unit Tests
   
 ![picture1](https://github.com/karamanets/karamanets/blob/main/icon/Lightning1.png)  Adapt to the dark and light mode
 
 ![picture1](https://github.com/karamanets/karamanets/blob/main/icon/Lightning1.png)  Sorting implemented from six options
 
 ![picture1](https://github.com/karamanets/karamanets/blob/main/icon/Lightning1.png)  Combined with Publishers and Subscribers
-  
+
 ![picture1](https://github.com/karamanets/karamanets/blob/main/icon/Lightning1.png)  CoreData storage of previously uploaded images
 
 <!--- Gamepad ---> 
